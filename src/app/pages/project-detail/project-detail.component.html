@@ -1,0 +1,168 @@
+<div class="div-detail">
+  <div class="example-loading-shade" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+  <div class="detail">
+    <div class="header">
+      <div>
+        <h1>
+          <strong>{{proj.name}}</strong>
+          <a matTooltip="{{'Edit'|translate}}" routerLink="/project-edit/{{id}}">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <button matTooltip="{{'Delete'|translate}}" mat-icon-button color="warn" (click)="openDeleteDialog()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </h1>
+      </div>
+      <div>
+        <div id="from" translate>From:
+          <span>{{proj.startDay | date: 'dd/MM/yyyy'}}</span>
+        </div>
+        <div id="to" translate>To:
+          <span>{{proj.endDay | date: 'dd/MM/yyyy'}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main">
+      <h2>Working Progress</h2>
+      <mat-progress-bar mode="determinate" value="{{proj.progress}}"></mat-progress-bar>
+      <mat-form-field>
+        <textarea readonly matInput placeholder="{{'Description'|translate}}">{{proj.description}}.</textarea>
+      </mat-form-field>
+
+      <div class="div-member">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title translate>
+                Member
+                <span>: {{proj.idMember.length}}</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="member-main" *ngFor="let item of members">
+              <div id="list-member">
+                <mat-card>
+                  <mat-card-header>
+                    <div mat-card-avatar class="header-image"></div>
+
+                    <mat-card-title>
+                      <a routerLink="/member-detail/{{item.id}}">
+                        <h1>
+                          <strong>{{item.name}}</strong>
+                        </h1>
+                      </a>
+                    </mat-card-title>
+
+
+                  </mat-card-header>
+
+                  <mat-card-content>
+                    <div class="card-content">
+                      <div translate>
+                        <mat-icon>email</mat-icon>
+                        Email
+                        <span>: {{item.email}}</span>
+                      </div>
+                      <div translate>
+                        <mat-icon>call</mat-icon>
+                        Mobile
+                        <span>: {{item.mobile}}</span>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+      <div class="div-member">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title translate>
+                TaskManagement
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <div *ngIf="tasks.lenght > 0"> -->
+            <div class="member-main" *ngFor="let item of data">
+              <div class="list-task">
+                <mat-card>
+                  <mat-card-header>
+                    <div class="cardtitle">
+                      <mat-card-title>
+
+                        <h1>
+                          <button mat-icon-button (click)="checkTask(item)">
+                            <mat-icon [ngStyle]="setMyStyles(item)" id="icon-check" aria-label="Example icon-button with a heart icon">check_circle</mat-icon>
+                          </button>
+                          <!-- <mat-icon id="icon-check">check_circle</mat-icon> -->
+                          <strong matTooltip="{{item.task.description}}" id="title">{{item.task.name}}</strong>
+                        </h1>
+
+
+                      </mat-card-title>
+                    </div>
+
+                    <div class="delete">
+                      <button mat-button matSuffix mat-icon-button (click)="openDeleteTaskDialog(item.task)">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </div>
+                  </mat-card-header>
+
+                  <mat-card-content>
+
+                    <div class="card-content">
+                      <div class="task-content">
+                        <div class="assign-to">
+
+                          <mat-icon>create</mat-icon>
+
+                          Assign to:
+
+                          <div *ngFor="let m of item.mem">
+                            <div>
+                              <a routerLink="/member-detail/{{m.id}}">
+                                {{m.name}}
+                              </a>
+                            </div>
+
+
+
+
+                          </div>
+                        </div>
+
+                        <div>
+                          <mat-icon>date_range</mat-icon>
+                          Deadline: {{item.task.endDay | date: 'dd/MM/yyyy'}}
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+            <!-- </div> -->
+
+            <div class="add-task">
+              <button class="btn-add " mat-raised-button (click)="openDialog()">
+                <mat-icon>add</mat-icon>
+                {{'ADDTASK'|translate}}
+              </button>
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
+  </div>
+</div>

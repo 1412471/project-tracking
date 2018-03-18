@@ -1,0 +1,65 @@
+<app-slideshow></app-slideshow>
+<div class="div-home">
+  <div class="example-loading-shade" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+  <div class="tabgroup">
+    <mat-tab-group>
+      <mat-tab label="Recently Project">
+        <ng-template mat-tab-label>
+          <h2>
+            <strong translate>RecentlyProject</strong>
+          </h2>
+        </ng-template>
+
+        <div class="main">
+
+          <div class="list-proj" *ngFor="let proj of project | paginate: { itemsPerPage: 3, currentPage: p }">
+            <mat-card>
+              <mat-card-header>
+                <div class="cardtitle">
+                  <mat-card-title>
+                    <a routerLink="/project-detail/{{proj.id}}">
+                      <h1>
+                        <strong>{{proj.data.name}}</strong>
+                      </h1>
+                    </a>
+
+                  </mat-card-title>
+                </div>
+
+                <div *ngIf="proj.data.status" class="status">Working</div>
+                <div *ngIf="!proj.data.status" class="status-done">Done</div>
+
+              </mat-card-header>
+
+              <mat-card-content>
+                <div class="card-content">
+                  <div>
+                    <mat-icon>people</mat-icon>
+                    {{proj.data.idMember.length}} member
+                  </div>
+                  <div>
+                    <mat-icon>date_range</mat-icon>
+                    From: {{proj.data.startDay | date: 'dd/MM/yyyy'}}
+                  </div>
+                  <div>
+                    <mat-icon>date_range</mat-icon>
+                    To: {{proj.data.endDay | date: 'dd/MM/yyyy'}}
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <div class="viewall">
+      <a routerLink="/project-list">
+        <i translate>ViewAllProjects</i>
+      </a>
+    </div>
+  </div>
+</div>

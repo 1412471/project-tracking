@@ -1,0 +1,128 @@
+$nav-color: #d7d7d7;
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==desktop {
+    @media (min-width: 70em) {
+      @content ;
+    }
+  }
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  mat-toolbar {
+    max-width: 540px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  mat-toolbar {
+    max-width: 720px;
+  }
+}
+
+@media screen and (min-width: 991px)and (max-width: 1199px) {
+  mat-toolbar {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  mat-toolbar {
+    max-width: 1140px;
+  }
+}
+
+mat-toolbar {
+  min-width: 350px;
+  width: 100%;
+  background-color: $nav-color;
+  box-shadow: 0 5px 5px -5px $my-color;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 0;
+  .project,
+  .logo,
+  .member {
+    text-decoration: none;
+    color: $my-color;
+    font-weight: bold;
+    font-size: 28px;
+    @include breakpoint(mobileonly) {
+      font-size: 24px;
+    }
+    @include breakpoint(desktop) {
+      font-size: 32px;
+    }
+  }
+}
+
+.nav {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+// .nav-left{
+//     margin-left: 30%;
+// }
+.nav-center {
+  display: block;
+  margin: 0 50px;
+  @include breakpoint(mobileonly) {
+    margin: 0 20px;
+  }
+  @include breakpoint(desktop) {
+    margin: 0 80px;
+  }
+  .nav-logo {
+    border: dashed 1px $my-color;
+    border-radius: 100%;
+    background-color: rgba($color: $my-color, $alpha: 0.1);
+    width: 85px;
+  }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 100px;
+}
+
+.logout {
+  font-size: 10px;
+  align-self: flex-start;
+  right: 0;
+  top: 0;
+  position: absolute;
+  text-decoration: none;
+  color: $my-color;
+  font-size: 15px;
+  .material-icons {
+    font-size: 20px;
+  }
+}

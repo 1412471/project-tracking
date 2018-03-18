@@ -1,0 +1,249 @@
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==desktop {
+    @media (min-width: 70em) {
+      @content ;
+    }
+  }
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+// @include breakpoint(mobileonly) {}
+// @include breakpoint(phablet) {}
+// @include breakpoint(tablet) {}
+// @include breakpoint(laptop) {}
+.main {
+  padding: 50px 5%;
+  mat-card-title {
+    h1 {
+      font-size: 20px;
+      @include breakpoint(tablet) {
+        font-size: 24px;
+      }
+    }
+  }
+  mat-form-field {
+    margin: 50px 0;
+    width: 100%;
+    font-size: 20px;
+    textarea {
+      height: 100px;
+      @include breakpoint(laptop) {
+        height: 200px;
+      }
+    }
+    @include breakpoint(mobileonly) {
+      font-size: 14px;
+    }
+    @include breakpoint(phablet) {
+      font-size: 16px;
+    }
+    @include breakpoint(tablet) {
+      font-size: 20px;
+    }
+  }
+  .div-member {
+    mat-expansion-panel {
+      background: rgba($color: $my-color, $alpha: .05);
+    }
+    margin: 30px 0;
+    mat-panel-title {
+      font-size: 20px;
+    }
+    .member-main {
+      margin: 50px 5%;
+      @include breakpoint(laptop) {
+        margin: 50px 10%;
+      }
+    }
+    .add-task {
+      text-align: center;
+      .btn-add {
+        background-color: rgba($color: $my-color, $alpha: 0.9);
+        color: #fff;
+      }
+    }
+    mat-card {
+      margin-bottom: 30px;
+      border-radius: 10px;
+    }
+    .header-image {
+      background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+      background-size: cover;
+    }
+    mat-icon {
+      margin-right: 7px;
+    }
+    .delete {
+      width: 25%;
+      text-align: right;
+      button {
+        background: red;
+        color: #fff;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+      }
+      .mat-icon-button .mat-icon {
+        font-size: 12px;
+        line-height: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .cardtitle {
+      width: 75%;
+    }
+    #title {
+      color: #007bff;
+    }
+    mat-button-toggle {
+      box-shadow: none;
+      /deep/ .mat-button-toggle-label-content {
+        padding: 0 !important;
+      } // /deep/ mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-checked {
+      //   color: aqua !important;
+      //   background: none !important;
+      // }
+      // #icon-check {
+      //   color: #28a745
+      // }
+    }
+    mat-button-toggle>>>mat-button-toggle.mat-button-toggle-standalone.mat-button-toggle-checked {
+      color: #28a745 !important;
+      background: none !important;
+    }
+    mat-grid-tile {
+      mat-icon {
+        margin-right: 7px;
+      }
+    }
+  }
+}
+
+.card-content {
+  // padding-top: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  div {
+    // display: flex;
+    padding-top: 5px;
+  }
+  padding-left: 20px;
+  @include breakpoint(tablet) {
+    display: flex;
+    padding-left: 0;
+  }
+}
+
+.task-content {
+  padding: 0;
+  width: 100%; // display: flex;
+  justify-content: space-between; // @include breakpoint(mobileonly) {
+  //   display: block;
+  // }
+  @include breakpoint(tablet) {
+    display: flex;
+  }
+  @include breakpoint(laptop) {
+    padding: 0 50px;
+  }
+}
+
+.assign-to {
+  padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
+  div {
+    width: 100%;
+    padding: 0 10px;
+    a {
+      padding-top: 10px;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  div {
+    display: flex;
+  }
+  h1 {
+    strong {
+      padding-right: 10px;
+    }
+    display: flex;
+    align-items: center;
+  }
+  #from,
+  #to {
+    margin-right: 10px;
+    font-size: 14px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.div-detail {
+  background: rgba($color: $my-color, $alpha: .2);
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  padding: 50px 5%;
+  @include breakpoint(mobileonly) {
+    padding: 20px 5%;
+  }
+}
+
+.detail {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  @include breakpoint(tablet) {
+    padding: 30px;
+  }
+  @include breakpoint(laptop) {
+    padding: 50px;
+  }
+}
+
+.example-loading-shade {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

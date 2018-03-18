@@ -1,0 +1,25 @@
+<mat-toolbar>
+  <div class="nav">
+    <div class="nav-left">
+      <a translate class="project" routerLink="/project-list">Project</a>
+    </div>
+
+    <div class="nav-center">
+      <a class="logo" routerLink="/dashboard">
+        <img class="nav-logo" src="../../../assets/imgs/product-tasks.png" alt="logo">
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <a translate class="member" routerLink="/member-list">Member</a>
+    </div>
+    <div class="logout">
+      <button (click)="logout()" mat-icon-button>
+        <mat-icon matTooltip="Log Out">vpn_key</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>

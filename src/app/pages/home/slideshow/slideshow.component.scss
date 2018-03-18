@@ -1,0 +1,67 @@
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+// @include breakpoint(mobileonly) {}
+// @include breakpoint(phablet) {}
+// @include breakpoint(tablet) {}
+// @include breakpoint(laptop) {}
+#myCarousel {
+  img {
+    @include breakpoint(mobileonly) {
+      height: 250px;
+    }
+    @include breakpoint(phablet) {
+      height: 350px;
+    }
+    @include breakpoint(tablet) {
+      height: 450px;
+    }
+    @include breakpoint(laptop) {
+      height: 500px;
+    }
+    opacity: 0.7;
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0;
+  box-shadow: 0 5px 5px -5px $my-color;
+}
+
+.carousel-indicators {
+  width: 100%;
+  margin: 0 auto;
+  li {
+    background: #999;
+  }
+}
+
+.carousel-control.right,
+.carousel-control.left {
+  background-image: none;
+  span {
+    color: #333;
+  }
+}

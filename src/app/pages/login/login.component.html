@@ -1,0 +1,22 @@
+<div class="div-login">
+  <div class="example-container">
+    <div class="login-logo">
+      <img class="logo" src="../../../assets/imgs/product-tasks.png" alt="logo">
+      <h2 translate>ProjectTracking</h2>
+    </div>
+    <form class="form1" name="form" (ngSubmit)="f.form.valid && login(user)" #f="ngForm" novalidate>
+      <mat-form-field [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+        <input matInput type="email" name="username" [(ngModel)]="user.email" #username="ngModel" placeholder="Email">
+      </mat-form-field>
+      <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+      <mat-form-field [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <input matInput type="password" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password">
+      </mat-form-field>
+      <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+      <p *ngIf="er === 1" translate>Wrong!!!</p>
+    </form>
+    <button class="login-button" mat-button color="primary" (click)="login(user)">
+      <strong translate>LOGIN</strong>
+    </button>
+  </div>
+</div>

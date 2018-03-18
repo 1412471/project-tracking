@@ -1,0 +1,131 @@
+<div class="div-detail">
+  <div class="example-loading-shade" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+  <div class="main">
+    <div class="row">
+      <div class="col-sm-4 text-center">
+
+        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <div class="viewmore">
+          <button class="btn-viewmore " mat-raised-button>
+            <span translate>
+              UploadAvatar
+            </span>
+          </button>
+        </div>
+
+
+      </div>
+      <div class="col-sm-8">
+        <div class="header">
+          <h1>
+            <strong style="margin-right: 10px;">{{mem.name}}</strong>
+
+            <a matTooltip="{{'Edit'|translate}}" routerLink="/member-edit/{{id}}">
+              <mat-icon>edit</mat-icon>
+            </a>
+
+            <button mat-icon-button color="warn" matTooltip="{{'Delete'|translate}}" (click)="openDeleteDialog()">
+              <!-- (click)="deletePost(post.id)"> -->
+              <mat-icon>delete</mat-icon>
+            </button>
+
+          </h1>
+        </div>
+
+        <div class="info">
+          <mat-tab-group class="demo-tab-group">
+            <mat-tab label="General" disabled>
+              <ng-template mat-tab-label>
+                <h2>
+                  <strong translate>GENERAL</strong>
+                </h2>
+              </ng-template>
+              <div class="demo-tab-content">
+
+                <mat-form-field class="example-full-width">
+                  <input readonly matInput placeholder="{{'Name'|translate}}" value="{{mem.name}}">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input readonly matInput placeholder="{{'Gender'|translate}}" value="{{mem.gender}}">
+                </mat-form-field>
+                <mat-form-field style="width: 70%; ">
+                  <input readonly matInput placeholder="{{'DateOfBirth'|translate}}" value="{{mem.dayOfBirth | date: 'dd/MM/yyyy'}}">
+                  <mat-icon matSuffix>date_range</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input readonly matInput placeholder="{{'Province'|translate}}" value="{{mem.city}}">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input readonly matInput placeholder="{{'District'|translate}}" value="{{mem.district}}">
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input readonly matInput placeholder="{{'Address'|translate}}" value="{{mem.address}}">
+                </mat-form-field>
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+          <mat-tab-group class="demo-tab-group">
+            <mat-tab label="Contact" disabled>
+              <ng-template mat-tab-label>
+                <h2>
+                  <strong translate>Contact</strong>
+                </h2>
+              </ng-template>
+              <div class="demo-tab-content">
+
+                <mat-form-field class="example-full-width">
+                  <input readonly matInput placeholder="{{'Mobile'|translate}}" value="{{mem.mobile}}">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                  <input readonly matInput placeholder="{{'Email'|translate}}" value="{{mem.email}}">
+                </mat-form-field>
+
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+          <mat-tab-group class="demo-tab-group">
+            <mat-tab label="Contact" disabled>
+              <ng-template mat-tab-label>
+                <h2>
+                  <strong translate>ProjectsJoined</strong>
+                </h2>
+              </ng-template>
+              <div class="demo-tab-content">
+                <div class="list-project">
+                  <mat-list *ngFor="let item of projectJoined">
+                    <mat-list-item>
+                      <a routerLink="/project-detail/{{item.id}}">{{item.name}}</a>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+
+
+                <!-- <div class="viewmore">
+                  <button class="btn-viewmore " mat-raised-button>
+                    {{'ViewMore'|translate}}
+                    <span class="fa fa-angle-double-right"></span>
+                  </button>
+                </div> -->
+
+
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

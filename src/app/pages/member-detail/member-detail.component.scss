@@ -1,0 +1,162 @@
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+@include breakpoint(mobileonly) {
+  .mat-card-image:first-child {
+    margin-top: 0;
+  }
+}
+
+// @include breakpoint(phablet) {}
+// @include breakpoint(tablet) {}
+// @include breakpoint(laptop) {}
+.div-detail {
+  background: rgba($color: $my-color, $alpha: .2);
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  padding: 50px 5%;
+}
+
+.main {
+  padding: 50px;
+  border-radius: 5px;
+  background-color: #fff;
+  @include breakpoint(mobileonly) {
+    padding: 20px;
+    margin: 20px 5%;
+  }
+  h2 {
+    color: $my-color;
+  }
+  .info {
+    padding: 0 5%;
+    .demo-tab-group {
+      margin: 20px 0;
+    }
+  }
+  .header {
+    h1 {
+      display: flex;
+      align-items: center;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.viewmore {
+  text-align: center;
+  margin-bottom: 50px; // font-size: 16px; 
+  .btn-viewmore {
+    background-color: rgba($color: $my-color, $alpha: 0.9);
+    color: #fff;
+    span {
+      padding-left: 5px;
+    }
+  }
+}
+
+img {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.demo-tab-group {
+  @include breakpoint(phablet) {
+    font-size: 16px;
+  }
+  @include breakpoint(laptop) {
+    font-size: 20px;
+  }
+  h2 {
+    // font-size: 24px;
+    @include breakpoint(mobileonly) {
+      font-size: 18px;
+    }
+    @include breakpoint(laptop) {
+      font-size: 24px;
+    }
+  }
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 10%;
+}
+
+.example-container>* {
+  width: 100%;
+}
+
+/deep/ mat-tab-header {
+  @include breakpoint(phablet) {
+    margin-bottom: 20px;
+  }
+}
+
+// ng-template {
+//   padding-bottom: 20px;
+// }
+mat-form-field {
+  padding-top: 10px;
+  width: 100%;
+  @include breakpoint(mobileonly) {
+    width: 100% !important;
+    font-size: 14px;
+  }
+  @include breakpoint(phablet) {
+    font-size: 16px;
+    padding: 0 5%;
+  }
+  @include breakpoint(tablet) {
+    font-size: 20px;
+    padding: 0 10%;
+  }
+}
+
+.list-project {
+  padding: 0 10%;
+  mat-list-item {
+    height: auto;
+  }
+}
+
+.example-loading-shade {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

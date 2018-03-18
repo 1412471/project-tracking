@@ -1,0 +1,84 @@
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+@include breakpoint(mobileonly) {}
+
+@include breakpoint(phablet) {}
+
+@include breakpoint(tablet) {}
+
+@include breakpoint(laptop) {}
+
+.task-dialog {
+  // padding: 20%;
+  min-width: 350px;
+  .size {
+    @include breakpoint(phablet) {
+      width: 50% !important;
+    }
+  }
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 10%;
+  }
+  .example-container>* {
+    width: 100%;
+  }
+  mat-form-field {
+    font-size: 16px;
+  }
+  .description {
+    height: 100px;
+  }
+  .btn-addID {
+    background-color: $my-color;
+    color: #fff;
+  }
+  .add-task {
+    text-align: center;
+    width: 100%;
+    margin: 20px;
+    .btn-add {
+      background-color: rgba($color: $my-color, $alpha: 0.9);
+      color: #fff;
+    }
+  }
+  .size {
+    @include breakpoint(phablet) {
+      width: 50% !important;
+    }
+  }
+  .demo-chip-list {
+    width: 100%;
+    mat-chip {
+      margin: 5px;
+    }
+  }
+  #add-member {
+    ul:hover {
+      background-color: rgba($color: $my-color, $alpha: .3);
+    }
+  }
+}

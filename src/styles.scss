@@ -1,0 +1,51 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+$my-color: #455a64;
+* {
+  box-sizing: border-box;
+}
+
+// body {
+//   padding-top: 100px;
+//   min-width: 350px;
+//   
+// }  
+@media screen and (max-width: 767px) {
+  .body {
+    max-width: 540px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .body {
+    max-width: 720px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 991px)and (max-width: 1199px) {
+  .body {
+    max-width: 960px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .body {
+    max-width: 1140px;
+    margin: auto;
+  }
+}
+
+html,
+.body {
+  min-width: 350px;
+}
+
+.body {
+  padding-top: 100px; //   background-color: gray !important;
+  background-image: url("/assets/imgs/background.jpg"); // background-repeat: no-repeat;
+  background-size: 100%; //   opacity: 0.5
+}

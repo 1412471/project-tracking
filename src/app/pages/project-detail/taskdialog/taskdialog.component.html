@@ -1,0 +1,78 @@
+<div class="task-dialog">
+  <form #form="ngForm">
+    <h2 mat-dialog-title>Add Task</h2>
+    <mat-dialog-content>
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Task Name" [(ngModel)]="task.name" name="name" [formControl]="nameControl" required>
+          <button mat-button *ngIf="task.name" matSuffix mat-icon-button aria-label="Clear" (click)="task.name=''">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="nameControl.hasError('required')">Please enter your name</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="size">
+          <input readonly matInput [matDatepicker]="picker" placeholder="Start Day" [(ngModel)]="task.startDay" name="startDay" [formControl]="dateFromControl"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="dateFromControl.hasError('required')">Please select a start date</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="size">
+          <input readonly matInput [matDatepicker]="mypicker" placeholder="End Day" [(ngModel)]="task.endDay" name="endDay" [formControl]="dateToControl"
+            required>
+          <mat-datepicker-toggle matSuffix [for]="mypicker"></mat-datepicker-toggle>
+          <mat-datepicker #mypicker></mat-datepicker>
+          <mat-error *ngIf="dateToControl.hasError('required')">Please select an end date</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea class="description" matInput placeholder="Description" [(ngModel)]="task.description" name="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="demo-chip-list">
+          <!-- <input matInput type="email" placeholder="Email" [(ngModel)]="email" name="email" (keydown)="search($event)" required> -->
+          <!-- <button class="btn-add" mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Add" (click)="email=''">
+            <mat-icon>add</mat-icon>
+          </button> -->
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let item of added" [selectable]="selectable" [removable]="removable" (remove)="remove(item)">
+              {{item}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input matInput type="email" placeholder="Assign To" [(ngModel)]="email" [formControl]="memberControl" name="email" (keydown)="search($event)"
+              [matChipInputFor]="chipList" required>
+            <mat-error *ngIf="added.length <= 0">Please add Member</mat-error>
+          </mat-chip-list>
+
+        </mat-form-field>
+
+        <div id="add-member" *ngFor="let mem of member">
+          <ul>
+            <li (click)="select(mem)">
+              <h3>{{mem.data.name}}</h3>
+              <div>{{mem.data.email}}</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <div class="add-task">
+        <button type="submit" mat-button [mat-dialog-close]="true" class="btn-add " mat-raised-button (click)="addTask()">
+          <mat-icon>add</mat-icon>
+          ADD
+        </button>
+        <button mat-button mat-dialog-close>Cancel</button>
+      </div>
+      <!-- <button mat-button mat-dialog-close>No</button> -->
+      <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+      <!-- <button mat-button [mat-dialog-close]="true">Yes</button> -->
+    </mat-dialog-actions>
+  </form>
+
+</div>

@@ -1,0 +1,52 @@
+<mat-toolbar>
+  <div class="footer">
+    <div class="footer-left">
+      <h2>
+        <strong translate>ContactUs</strong>
+      </h2>
+      <mat-list>
+        <mat-list-item> Tel: 0123456789 </mat-list-item>
+        <mat-list-item> {{'Mobile'|translate}}: 0123456789 </mat-list-item>
+        <mat-list-item> Email: khaitruong9661@gmail.com </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="footer-right">
+      <h2>
+        <strong translate>FollowUs</strong>
+      </h2>
+      <div class="icon-contact">
+        <div>
+          <a href="#">
+            <mat-icon class="fa fa-facebook-square" style="font-size:36px"></mat-icon>
+          </a>
+          <a href="#">
+            <mat-icon class="fa fa-google-plus-square" style="font-size:36px"></mat-icon>
+          </a>
+        </div>
+
+
+
+        <div>
+          <a href="#">
+            <mat-icon class="fa fa-twitter-square" style="font-size:36px"></mat-icon>
+          </a>
+          <a href="#">
+            <mat-icon class="fa fa-instagram" style="font-size:36px"></mat-icon>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div>
+    <mat-chip-list>
+      <mat-chip color="primary" selected="true" (click)="useLanguage('en')">En</mat-chip>
+      <mat-chip color="accent" selected="true" (click)="useLanguage('vi')">Vi</mat-chip>
+    </mat-chip-list>
+  </div>
+
+
+</mat-toolbar>

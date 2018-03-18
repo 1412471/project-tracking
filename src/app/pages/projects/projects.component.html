@@ -1,0 +1,57 @@
+<div class="div-list">
+  <div class="example-loading-shade" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+  </div>
+  <app-searchbox [searchterm]="searchtext" (change)="search($event)"></app-searchbox>
+
+  <div class="new">
+    <a mat-mini-fab routerLink="/new-project">
+      <mat-icon matTooltip="New Project!">add</mat-icon>
+    </a>
+  </div>
+
+  <div class="main" *ngFor="let proj of project | paginate: { itemsPerPage: 3, currentPage: p }">
+    <mat-card>
+      <mat-card-header>
+        <div class="cardtitle">
+          <mat-card-title>
+            <a routerLink="/project-detail/{{proj.id}}">
+              <h1>
+                <strong>{{proj.data.name}}</strong>
+              </h1>
+            </a>
+
+          </mat-card-title>
+        </div>
+
+        <div *ngIf="proj.data.status" class="status">Working</div>
+        <div *ngIf="!proj.data.status" class="status-done">Done</div>
+
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="card-content">
+          <div translate>
+            <mat-icon>people</mat-icon>
+            <span>{{proj.data.idMember.length}}</span>
+            &nbsp;Member
+          </div>
+          <div translate>
+            <mat-icon>date_range</mat-icon>
+            From:&nbsp;
+            <span>{{proj.data.startDay | date: 'dd/MM/yyyy'}}</span>
+          </div>
+          <div translate>
+            <mat-icon>date_range</mat-icon>
+            To:&nbsp;
+            <span>{{proj.data.endDay | date: 'dd/MM/yyyy'}}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+  </div>
+</div>

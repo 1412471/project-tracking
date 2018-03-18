@@ -1,0 +1,95 @@
+$my-color: #455a64;
+@mixin breakpoint($point) {
+  @if $point==desktop {
+    @media (min-width: 70em) {
+      @content ;
+    }
+  }
+  @if $point==laptop {
+    @media (min-width: 64em) {
+      @content ;
+    }
+  }
+  @else if $point==tablet {
+    @media (min-width: 50em) {
+      @content ;
+    }
+  }
+  @else if $point==phablet {
+    @media (min-width: 37.5em) {
+      @content ;
+    }
+  }
+  @else if $point==mobileonly {
+    @media (max-width: 37.5em) {
+      @content ;
+    }
+  }
+}
+
+// @include breakpoint(mobileonly) {}
+// @include breakpoint(phablet) {}
+// @include breakpoint(tablet) {}
+// @include breakpoint(laptop) {}
+.example-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10% 15%;
+  background: #fff;
+  border: 1px solid $my-color;
+  border-radius: 5px;
+}
+
+.div-login {
+  background: rgba($color: $my-color, $alpha: .2);
+  opacity: 1;
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  @include breakpoint(mobileonly) {
+    padding: 10% 10%;
+  }
+  @include breakpoint(phablet) {
+    padding: 5% 20%;
+  }
+  @include breakpoint(tablet) {
+    padding: 5% 25%;
+  }
+  @include breakpoint(desktop) {
+    padding: 5% 30%;
+  }
+}
+
+.example-container>* {
+  width: 100%;
+}
+
+.login-logo {
+  text-align: center;
+  margin-bottom: 50px;
+  @include breakpoint(mobileonly) {
+    margin-bottom: 30px;
+  }
+  color: $my-color;
+  .logo {
+    width: 100px;
+  }
+}
+
+.login-button {
+  margin-top: 50px;
+  @include breakpoint(mobileonly) {
+    margin-top: 30px;
+  }
+}
+
+mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+p {
+  color: red;
+  text-align: center;
+  font-size: 15px;
+}

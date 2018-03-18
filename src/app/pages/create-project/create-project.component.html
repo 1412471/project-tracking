@@ -1,0 +1,102 @@
+<div class="div-create">
+  <mat-accordion class="example-headers-align">
+    <form #form="ngForm">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title translate>
+            GENERAL
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your project information
+            <mat-icon>info_outline</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="example-container">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'ProjectName'|translate}}" [(ngModel)]="proj.name" name="name" [formControl]="nameControl"
+              required>
+            <button mat-button *ngIf="proj.name" matSuffix mat-icon-button aria-label="Clear" (click)="proj.name=''">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-error *ngIf="nameControl.hasError('required')">Please enter project name</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="size">
+            <input readonly matInput [matDatepicker]="picker" placeholder="{{'From:'|translate}}" [(ngModel)]="proj.startDay" name="startDay"
+              [formControl]="dateFromControl" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="dateFromControl.hasError('required')">Please select a start date</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="size">
+            <input readonly matInput [matDatepicker]="mypicker" placeholder="{{'To:'|translate}}" [(ngModel)]="proj.endDay" name="endDay"
+              [formControl]="dateToControl" required>
+            <mat-datepicker-toggle matSuffix [for]="mypicker"></mat-datepicker-toggle>
+            <mat-datepicker #mypicker></mat-datepicker>
+            <mat-error *ngIf="dateToControl.hasError('required')">Please select an end date</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <textarea class="description" matInput placeholder="{{'Description'|translate}}" [(ngModel)]="proj.description" name="description"></textarea>
+          </mat-form-field>
+        </div>
+
+
+        <mat-action-row>
+          <button type="submit" mat-button color="primary" (click)="nextStep()">{{'Next'|translate}}</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </form>
+
+    <form #form="ngForm">
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title translate>
+            Member
+          </mat-panel-title>
+          <mat-panel-description>
+            Add members to your project
+            <mat-icon>person_add</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="example-container">
+          <mat-form-field class="demo-chip-list">
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let item of added" [selectable]="selectable" [removable]="removable" (remove)="remove(item)">
+                {{item}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input matInput type="email" placeholder="Email" [(ngModel)]="email" [formControl]="memberControl" name="email" (keydown)="search($event)"
+                [matChipInputFor]="chipList" required>
+              <mat-error *ngIf="added.length <= 0">Please add Member</mat-error>
+            </mat-chip-list>
+
+          </mat-form-field>
+
+          <div id="add-member" *ngFor="let mem of member">
+            <ul>
+              <li (click)="select(mem)">
+                <h3>{{mem.data.name}}</h3>
+                <div>{{mem.data.email}}</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">{{'Previous'|translate}}</button>
+          <button type="submit" class="btn-create" mat-raised-button (click)="addProject()">{{'Create'|translate}}</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </form>
+
+  </mat-accordion>
+
+
+
+</div>
