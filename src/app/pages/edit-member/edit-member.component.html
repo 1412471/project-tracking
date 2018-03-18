@@ -63,7 +63,7 @@
 
           <mat-form-field>
             <input matInput type="text" placeholder="Address" [(ngModel)]="mem.address" name="valueAddress">
-            <button mat-button *ngIf="valueAddress" matSuffix mat-icon-button aria-label="Clear" (click)="valueAddress=''">
+            <button mat-button *ngIf="mem.address" matSuffix mat-icon-button aria-label="Clear" (click)="mem.address=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>

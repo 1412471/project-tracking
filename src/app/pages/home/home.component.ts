@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       this.project = data;
     });
     setTimeout(() => {
-      this.sortProject(this.project);
+      this.project = this.sortProject(this.project);
       this.isLoading = false;
     }, 3000);
   }
